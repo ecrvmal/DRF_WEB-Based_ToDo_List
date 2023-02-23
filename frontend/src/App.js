@@ -5,7 +5,7 @@ import './App.css';
 import UserList from './components/Users.js'
 import ProjectList from './components/Projects.js'
 import TODOList from './components/TODO.js'
-import ProjectDetails from './components/ProjectDetails.js'
+// import ProjectDetails from './components/ProjectDetails.js'
 import FooterDiv from './components/Footer.js'
 import MenuDiv from './components/Menu.js'
 import NotFound404 from "./components/NotFound404.js";
@@ -94,13 +94,6 @@ class App extends React.Component {
                                 projects={this.state.projects}
                                 users={this.state.users}
                             />}/>
-
-                       <Route path="/project/:id" component={
-                            () =>  <ProjectDetails
-                                projects={this.state.projects}
-                                users={this.state.users}
-                            />}/>
-
 
                           <Route component={NotFound404}/>
                     </Switch>

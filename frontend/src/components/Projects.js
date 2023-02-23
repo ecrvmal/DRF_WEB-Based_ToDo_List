@@ -28,7 +28,8 @@ const ProjectItem = ({project, users, index}) => {
     return (
     <tr>
         <td>
-              <a href={`/project/${index}`}>{project.project_name}</a>
+        {project.project_name}
+              {/* <a href={`/project/${index}`}>{project.project_name}</a> */}
         </td>
         <td>
             {usernames}
