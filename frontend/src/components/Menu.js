@@ -6,16 +6,12 @@ import logout from '../App.js'
 
 
 
-const MenuDiv = ({username, token}) => {
-    console.log('menu1',username,token)
-    if ( username == '_' && token ) {
+const MenuDiv = ({username, status}) => {
+    console.log('menu1',username,status)
+    if ( username == '_' && status ) {
     username = 'unknown'}
-    console.log('menu2',username,token)
+    console.log('menu2',username,status)
 
-   {/* handleOnClick(event) {
-        this.props.(this.state.login,this.state.password)
-        event.preventDefault()
-        }    */}
 
     return (
     <div className="Menu-div">
@@ -36,13 +32,11 @@ const MenuDiv = ({username, token}) => {
         <nav>
              <ul className="Menu-nav">
                 <li className="Menu-li">
-                      { token? username:<p />  }
+                      { status? username:<p />  }
                 </li>
                 <li className="Menu-li">
-                  {token?  <a href='/logout'>LogOut</a>: <a href='/login'>LogIn</a>}
-
-                                           {/*  <button onClick={()=> logout_call=true }>LogOut</button> */}
-
+                  {status? <button onClick={()=> logout()}>LogOut</button> :
+                           <a href='/login'>LogIn</a>}
                 </li>
              </ul>
         </nav>

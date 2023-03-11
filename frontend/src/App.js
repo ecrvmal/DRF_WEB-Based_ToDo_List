@@ -12,7 +12,10 @@ import LoginForm from './components/Auth.js'
 import NotFound404 from "./components/NotFound404.js";
 import {HashRouter,Route,BrowserRouter,Link,Switch,Redirect} from "react-router-dom";
 import Cookies from "universal-cookie";
-import BlancPage from  './components/blanc.js'
+<<<<<<< HEAD
+import BlancPage from  './components/Blanc.js'
+=======
+>>>>>>> parent of 9b58dd3... Lesson7 Homework Comlete
 
 
 
@@ -64,18 +67,19 @@ class App extends React.Component {
 
     get_token(username, password) {
         console.log('get_token usern', username)
-        this.setState({username:username})
+        this.setState({username: username})
         console.log('get_token ',this.state.username)
         axios.post('http://127.0.0.1:8000/api-token-auth/',
             {'username': username, 'password': password})
             .then(response => {
-                this.set_token(response.data['token'],username)
+                this.set_cookies(response.data['token'],username);
             }).catch(error => alert('Не верный логин или пароль'))
             console.log(' state',this.state.username , this.state.token)
-            window.location.replace('http://127.0.0.1:3000/users')
+            window.location.replace('http://127.0.0.1:3000/users');
+
 }
 
-    set_token(token,username) {
+    set_cookies(token, username) {
         console.log('set_token',token)
         // localStorage.setItem('token',token)
         // let item = localStorage.getItem('token')
@@ -86,11 +90,12 @@ class App extends React.Component {
     }
 
     is_auth(){
-        console.log('is_auth')
+            console.log('is_auth')
         return !!this.state.token
     }
 
     get_headers(){
+
         let headers = {
         'Content-Type':'applications/json'
         }
@@ -101,29 +106,23 @@ class App extends React.Component {
         return headers
     }
 
-
     logout() {
-        window.location.replace('http://127.0.0.1:3000/blanc')
-        console.log('logout')
-        this.state.token=''
-        this.state.username='_'
-        const cookies = new Cookies()
-        cookies.set('token', "")
-        cookies.set('username', "")
-
+                console.log('logout')
+        this.set_token('')
+         this.setState({username:''})
+         window.location.replace('http://127.0.0.1:3000/login');
     }
 
     get_token_from_cookies(){
         console.log('get_token_from_cookies')
         const cookies = new Cookies()
         const username = cookies.get('username')
-        if (!(typeof(username) == 'undefined')) {this.setState({username: username}) }
+        if (!(username == '_')) {this.setState({'username': username}) }
         console.log('get_token_from_cookies username ',this.state.username)
         const token = cookies.get('token')
         console.log('get_token_from_cookies token',token)
-        if (!(typeof(token)=='undefined' )) {this.setState({token: token},()=>this.load_data())}
-        console.log('get_token_from_cookies username ',this.state.username , this.state.token)
-//        else {window.location.replace('http://127.0.0.1:3000/login');}
+        if (token) {this.setState({'token': token},()=>this.load_data())}
+        else {}
 
     }
 
@@ -131,9 +130,8 @@ class App extends React.Component {
 
 
     componentDidMount() {
-        console.log('componentDidMount')
+                    console.log('componentDidMount')
         this.get_token_from_cookies()
-
     }
 
     render () {
@@ -141,12 +139,9 @@ class App extends React.Component {
 
                 <BrowserRouter>
                                 <alert return />
-                 <MenuDiv username={this.state.username} token={this.state.token}   />
-                        {/*   <Route path='/' component ={() =>
-                        <MenuDiv if_logout=
-                            {(username=this.state.username, token=token, logout_call=logout_call) =>
-                                {this.if_logout(username,token,logout_call)} } /> } />   */}
-
+                     {/* <Route component={
+                            () => <MenuDiv username={this.state.username} status={this.is_auth()}  />}/> */}
+                     <MenuDiv username={this.state.username} status={this.is_auth()}  />
                     <Switch>
 
                       <Route exact path="/" component={
@@ -177,9 +172,9 @@ class App extends React.Component {
                        <Route exact path='/login' component={() => <LoginForm
                             get_token={(username, password) => this.get_token(username, password)}/>}/>
 
-                        <Route exact path='/logout' component={()=> this.logout()}/>
-                        <Route exact path='/blanc' component={()=> <BlancPage /> }/>
-
+                        <Route exact path='/logout' component={() => { this.logout();
+                        <LoginForm get_token={(username, password) => this.get_token(username, password)}/>
+                            }}/>
 
                           <Route component={NotFound404}/>
                     </Switch>
