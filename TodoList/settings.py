@@ -45,8 +45,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # installed
     'corsheaders',
+    'graphene_django',
     'rest_framework',
+    # my
     'users',
     'TODO',
     'django_filters',
@@ -65,6 +68,10 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'TodoList.urls'
+
+GRAPHENE = {
+    'SCHEMA': 'TodoList.schema.schema'  # the route to schema file
+}
 
 # from rest_framework_simple
 

@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from graphene_django.views import GraphQLView
 
 from rest_framework.routers import DefaultRouter  # this helps to define entry points
 # from users.views import UsersCustomViewSet
@@ -38,5 +39,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
     path('api/', include(router.urls)),  # connect  path = api/    router
-    path('api-token-auth/', views.obtain_auth_token)
+    path('api-token-auth/', views.obtain_auth_token),
+    path('graphql/', GraphQLView.as_view(graphiql=True)),
 ]
