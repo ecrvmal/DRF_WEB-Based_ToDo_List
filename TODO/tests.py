@@ -133,7 +133,9 @@ class TestProjectsViewSet(APITestCase):
         self.data_user = {'username': 'Vlad', 'first_name': 'Vladimir', 'last_name': 'Ivanov', 'password': 'mypassword',
                           "birthday_year": 1965, 'email': 'vlad@rambler.ru'}
         self.data = {'project_name': 'Test_Project_Name',
-                     # 'project_users': (1,),
+
+                     # 'project_users': [],
+
                      'project_date_created': "2023-02-14", 'project_url': 'http://www.project.com'}
         self.data_put = {'project_name': 'Test_Project_Name2',
                          'project_date_created': "2023-03-01", 'project_url': 'http://www.project.ru'}

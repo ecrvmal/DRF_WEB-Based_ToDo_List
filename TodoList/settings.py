@@ -46,14 +46,16 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # installed
+    'django_filters',
+    'rest_framework.authtoken',
     'corsheaders',
     'graphene_django',
     'rest_framework',
+    'drf_yasg',
     # my
     'users',
     'TODO',
-    'django_filters',
-    'rest_framework.authtoken',
+
 ]
 
 MIDDLEWARE = [
@@ -90,6 +92,12 @@ REST_FRAMEWORK = {
         'rest_framework.renderers.JSONRenderer',
         'rest_framework.renderers.BrowsableAPIRenderer',
     ],
+
+
+
+    'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.URLPathVersioning',
+
+
 }
 
 TEMPLATES = [
