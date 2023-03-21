@@ -51,7 +51,7 @@ class ProjectsSearchForm extends React.Component {
 
     handleSubmit(event) {
        let a = selected_projects(this.state.my_string,this.props.projects)
-       this.setState({proj: [...this.state.proj, ...a]})
+       this.setState({'proj': [ ...a]})
        event.preventDefault()
        }
 
@@ -69,8 +69,8 @@ class ProjectsSearchForm extends React.Component {
                 <div className="form-group input_line">
                 <input type="submit" className="btn btn-primary mrgn20"
                         name="project" value="Search" />
-                <input type="submit" className="btn btn-primary mrgn20"
-                        name="project" value="clear" />
+                <input type="reset" className="btn btn-primary mrgn20"
+                        name="project" value="Clear" />
                 </div>
             </form>
 

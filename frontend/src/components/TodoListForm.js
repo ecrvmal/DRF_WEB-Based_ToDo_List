@@ -49,7 +49,7 @@ const TodoItem = ({itemnote,users,projects,deleteTodo}) => {
             {project_name}
         </td>
           <td>
-            <button onClick={()=> deleteTodo(TODOList.id)}type='button'>Delete</button>
+            <button onClick={()=> deleteTodo(itemnote.id)}type='button'>Delete</button>
         </td>
     </tr>
 
