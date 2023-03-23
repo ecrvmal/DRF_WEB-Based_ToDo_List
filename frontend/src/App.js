@@ -46,7 +46,7 @@ class App extends React.Component {
 //         const my_user = this.state.users.filter((item) =>{ return  [Number(+user)].includes(item.id) } );
 //         console.log ('users', this.state.users)
 //        console.log('user ', user, my_user)
-         axios.post('http://127.0.0.1:8000/api/projects/',data,{headers}).
+         axios.post('http://178.21.10.181:8000/api/projects/',data,{headers}).
             then(response => {
                 let new_project= response.data
                 this.setState({projects:[...this.state.projects, new_project]})
@@ -56,7 +56,7 @@ class App extends React.Component {
 
     deleteProject(id) {
         const headers = this.get_headers()
-        axios.delete(`http://127.0.0.1:8000/api/projects/${id}`, {headers: headers})
+        axios.delete(`http://178.21.10.181:8000/api/projects/${id}`, {headers: headers})
             .then(response =>{
                 this.setState({projects:this.state.projects.filter((item) =>item.id !== id)})
         }).catch(error => console.log(error))
@@ -73,7 +73,7 @@ class App extends React.Component {
 //         console.log ('users', this.state.users)
 //         console.log('author ', author, my_author)
 //         console.log('data =' ,data)
-         axios.post('http://127.0.0.1:8000/api/todo/',data,{headers}).
+         axios.post('http://178.21.10.181:8000/api/todo/',data,{headers}).
             then(response => {
                 let new_todo= response.data
                 this.setState({TODOList:[...this.state.TODOList, new_todo]})
@@ -84,7 +84,7 @@ class App extends React.Component {
 
     deleteTodo(id) {
         const headers = this.get_headers()
-        axios.delete(`http://127.0.0.1:8000/api/todo/${id}`, {headers: headers})
+        axios.delete(`http://178.21.10.181:8000/api/todo/${id}`, {headers: headers})
             .then(response =>{
                 this.setState({TODOList:this.state.TODOList.filter((item) =>item.id !== id)})
         }).catch(error => console.log(error))
@@ -95,7 +95,7 @@ class App extends React.Component {
     load_data() {
         const headers = this.get_headers()
         console.log('load_data')
-        axios.get('http://127.0.0.1:8000/api/users/',{headers}).then(response => {
+        axios.get('http://178.21.10.181:8000/api/users/',{headers}).then(response => {
             this.setState(
                 {
                     'users': response.data
@@ -103,7 +103,7 @@ class App extends React.Component {
             )
         }).catch(error => console.log(error))
 
-        axios.get('http://127.0.0.1:8000/api/projects/',{headers}).then(response => {
+        axios.get('http://178.21.10.181:8000/api/projects/',{headers}).then(response => {
             this.setState(
                 {
                     'projects': response.data
@@ -111,7 +111,7 @@ class App extends React.Component {
             )
         }).catch(error => console.log(error))
 
-        axios.get('http://127.0.0.1:8000/api/todo/',{headers}).then(response => {
+        axios.get('http://178.21.10.181:8000/api/todo/',{headers}).then(response => {
             this.setState(
                 {
                     'TODOList': response.data
@@ -122,7 +122,7 @@ class App extends React.Component {
     }
 
     get_token(username, password) {
-        axios.post('http://127.0.0.1:8000/api-token-auth/',
+        axios.post('http://178.21.10.181:8000/api-token-auth/',
             {'username': username, 'password': password})
             .then(response => {
 //              console.log(response.data['token'])
@@ -176,7 +176,7 @@ class App extends React.Component {
         const cookies = new Cookies()
         cookies.set("token", "")
         cookies.set("username", "")
-        window.location.replace('http://127.0.0.1:3000/login');
+        window.location.replace('http://178.21.10.181:80');
     }
 
     get_token_from_cookies(){
@@ -237,7 +237,7 @@ class App extends React.Component {
                                 projects={this.state.projects}
                                 createTodo={(text,author,project)=> this.createTodo(text,author,project)}/>}/>
 
-                        <Route path='/login' element={<LoginForm
+                        <Route path="/login" element={<LoginForm
                             get_token={(username, password) => this.get_token(username, password)}/>}/>
 
                         {/* <Route exact path='/logout' component={() => { this.logout();
