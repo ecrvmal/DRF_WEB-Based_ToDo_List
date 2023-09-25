@@ -16,3 +16,6 @@ Python-разработка", портал GeekBrains, курс `Основы Dj
 
 MIT
 
+user2...user9 : admin
+admin : admin
+

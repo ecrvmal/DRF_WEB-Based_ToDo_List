@@ -13,7 +13,7 @@ const ProjectData = ({project, users})  => {
  const usr_indexes = project.project_users;
 console.log('usr_indexes   ', usr_indexes);
   const proj_users = users.filter((item) =>{
-               return   index.includes(item.id)
+               return   usr_indexes.includes(item.id)
                 } );
                 console.log('proj_users  ', proj_users);
               usernames =  proj_users.map((usr) => {
